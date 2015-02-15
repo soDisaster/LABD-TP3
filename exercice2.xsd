@@ -1,0 +1,42 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="marqueV">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="modele">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="annee">
+		<xsd:restriction base="xsd:gYear"/>
+	</xsd:simpleType>
+	<xsd:complexType name="item">
+		<xsd:sequence>
+			<xsd:element name="marque" type="marqueV"/>
+			<xsd:element name="modele" type="modele"/>
+			<xsd:element name="annee" type="annee"/>
+		</xsd:sequence>
+		<xsd:attribute name="prix" type="xsd:integer"/>
+		
+	</xsd:complexType>
+	<xsd:complexType name="neufs">
+		<xsd:sequence>
+			<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="occ">
+		<xsd:sequence>
+			<xsd:element name="item" type="item" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="stockAtt" >
+			<xsd:sequence>
+				<xsd:element name="occases" type="occ" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="neufs" type="neufs" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			
+				<xsd:attribute name="nom" type="xsd:string"/>
+			
+		</xsd:complexType>
+	<xsd:element name="stock" type="stockAtt"/>
+	
+</xsd:schema>

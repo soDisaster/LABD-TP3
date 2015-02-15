@@ -1,0 +1,47 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="creneauHoraire">
+		<xsd:restriction base="xsd:time">
+			<xsd:minInclusive value="02:30:00"/>
+			<xsd:maxInclusive value="16:50:00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="reel-precision">
+		<xsd:restriction base="xsd:float">
+			<xsd:maxExclusive value="5"/>
+			<xsd:minInclusive value="-3476.4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="chaine-quatre">
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="imageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="jpg"/>
+			<xsd:enumeration value="gif"/>
+			<xsd:enumeration value="png"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ISBN">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:pattern value="[0-9]{13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:element name="exercice1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="heure" type="creneauHoraire"/>
+				<xsd:element name="reel" type="reel-precision"/>
+				<xsd:element name="chaine" type="chaine-quatre"/>
+				<xsd:element name="type" type="imageType"/>
+				<xsd:element name="ISBN" type="ISBN"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+	
+</xsd:schema>

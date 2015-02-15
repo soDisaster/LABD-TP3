@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<exercice1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="exercice1.xsd">
+<heure>02:30:30</heure>
+<reel>4.3</reel>
+<chaine>abcd</chaine>
+<type>png</type>
+<ISBN>1234567891234</ISBN>
+</exercice1>
+

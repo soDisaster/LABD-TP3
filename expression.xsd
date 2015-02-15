@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="constante">
+		<xsd:restriction base="xsd:integer"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="var">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="opType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="+"/>
+			<xsd:enumeration value="-"/>
+			<xsd:enumeration value="*"/>
+			<xsd:enumeration value="/"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:group name="GroupOp">
+		<xsd:choice>
+			<xsd:sequence>
+				<xsd:element name="op" type="op" minOccurs="1" maxOccurs="1"/>
+				<xsd:choice>
+					<xsd:element name="cons" type="constante" minOccurs="1" maxOccurs="1"/>
+					<xsd:element name="var" type="var" minOccurs="1" maxOccurs="1"/>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:sequence>
+				<xsd:choice maxOccurs="1" minOccurs="1">
+					<xsd:element name="cons" type="constante" minOccurs="1" maxOccurs="1"/>
+					<xsd:element name="var" type="var" minOccurs="1" maxOccurs="1"/>
+				</xsd:choice>
+				<xsd:choice>
+					<xsd:element name="cons" type="constante" minOccurs="1" maxOccurs="1"/>
+					<xsd:element name="var" type="var" minOccurs="1" maxOccurs="1"/>
+					<xsd:element name="op" type="op" minOccurs="1" maxOccurs="1"/>
+				</xsd:choice>
+			</xsd:sequence>
+		
+		</xsd:choice>
+	</xsd:group>
+	<xsd:complexType name="op" mixed="true">
+		<xsd:group ref="GroupOp"/>
+		<xsd:attribute name="val" type="opType"/>
+	</xsd:complexType>
+	<xsd:element name="op" type="op"/>
+
+	<xsd:complexType name="expr">
+		<xsd:sequence>
+			<xsd:element name="op" type="op" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="expr" type="expr"/>
+</xsd:schema>
